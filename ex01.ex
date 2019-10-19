@@ -28,6 +28,6 @@ end
 # How to run
 #--------
 
-# Exercise01.calculate([10, 15, 3, 7], 17)
+# Ex01.calculate([10, 15, 3, 7], 17)
 
 
