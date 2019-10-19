@@ -7,17 +7,17 @@
 
 defmodule Ex01 do
 
-    def sum_two_numbers([head|tail]) do
-        result = Enum.map(tail, fn x -> x + head end)
-        Enum.concat(result, sum_two_numbers(tail))
+    def sum_two_numbers([], acc) do
+        acc
     end
 
-    def sum_two_numbers([]) do
-        []
+    def sum_two_numbers([head|tail], acc) do
+        result = Enum.map(tail, fn x -> x + head end)
+        sum_two_numbers(tail, acc ++ result)
     end
 
     def calculate(values, k) do
-        sum_two_numbers(values) 
+        sum_two_numbers(values, []) 
         |> Enum.filter(fn x -> x == k end)
         |> length > 0
     end
