@@ -15,22 +15,25 @@ defmodule Ex23 do
     end
     
     def find_overlappings([head|tail]) do
-        find_overlappings([head|tail], [])
+        result = find_overlappings([head|tail], [])
+        IO.inspect result, label: "Result:  "
+        length(result)
     end
 
     def find_overlappings([head|tail], acc) do
         
 
+        does_not_overlaps_with_head = Enum.filter(tail, fn x -> !Ex23.overlaps?(head, x) end)
+        classroom_list = [head] ++ does_not_overlaps_with_head
 
-        room = Enum.filter(tail, fn x -> !Ex23.overlaps?(head, x) end) ++ [head]
 
-        IO.inspect  acc, label: "Acc "
-        IO.inspect  head, label: "Head "
-        IO.inspect  tail, label: "tail "
-        IO.inspect  room, label: "Room "
-        IO.puts "--------"
+        # IO.inspect  acc, label: "Acc "
+        # IO.inspect  head, label: "Head "
+        # IO.inspect  tail, label: "tail "
+        # IO.inspect  room, label: "Room "
+        # IO.puts "--------"
 
-        find_overlappings(tail, acc ++ [room])
+        find_overlappings(tail -- does_not_overlaps_with_head, acc ++ [classroom_list])
 
 
 
